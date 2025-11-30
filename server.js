@@ -2,6 +2,7 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 const { createClient } = require('@supabase/supabase-js');
 
 const app = express();
@@ -17,8 +18,8 @@ app.use((req, res, next) => {
     next();
 });
 
-// Root endpoint - หน้าแรก
-app.get('/', (req, res) => {
+// API Documentation endpoint
+app.get('/api', (req, res) => {
     res.json({
         success: true,
         message: '🎓 ยินดีต้อนรับสู่ Students Course System API',
@@ -70,5 +71,12 @@ app.use('/api/students', studentRoutes);
 app.use('/api/courses', courseRoutes);
 app.use('/api/enrollments', enrollmentRoutes);
 
+// Serve static files from public folder (after API routes)
+app.use(express.static(path.join(__dirname, 'public')));
+
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, () => {
+    console.log(`\n🚀 Server running on port ${PORT}`);
+    console.log(`📱 Frontend: http://localhost:${PORT}`);
+    console.log(`🔌 API Docs: http://localhost:${PORT}/api\n`);
+});

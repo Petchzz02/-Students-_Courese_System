@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎓 Student Course Management System</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                <h1>Student Course Management System</h1>
+            </div>
+            <nav class="nav">
+                <button class="nav-btn active" data-section="students">
+                    <i class="fas fa-user-graduate"></i> นักเรียน
+                </button>
+                <button class="nav-btn" data-section="courses">
+                    <i class="fas fa-book"></i> คอร์สเรียน
+                </button>
+                <button class="nav-btn" data-section="enrollments">
+                    <i class="fas fa-clipboard-list"></i> การลงทะเบียน
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            
+            <!-- Students Section -->
+            <section id="students" class="section active">
+                <div class="section-header">
+                    <h2><i class="fas fa-user-graduate"></i> จัดการข้อมูลนักเรียน</h2>
+                    <button class="btn btn-primary" onclick="openStudentModal()">
+                        <i class="fas fa-plus"></i> เพิ่มนักเรียน
+                    </button>
+                </div>
+                
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchStudent" placeholder="ค้นหานักเรียน...">
+                </div>
+
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>ชื่อ-นามสกุล</th>
+                                <th>อีเมล</th>
+                                <th>สาขา</th>
+                                <th>วันที่สร้าง</th>
+                                <th>จัดการ</th>
+                            </tr>
+                        </thead>
+                        <tbody id="studentsTableBody">
+                            <tr>
+                                <td colspan="6" class="loading">
+                                    <i class="fas fa-spinner fa-spin"></i> กำลังโหลดข้อมูล...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Courses Section -->
+            <section id="courses" class="section">
+                <div class="section-header">
+                    <h2><i class="fas fa-book"></i> จัดการคอร์สเรียน</h2>
+                    <button class="btn btn-primary" onclick="openCourseModal()">
+                        <i class="fas fa-plus"></i> เพิ่มคอร์ส
+                    </button>
+                </div>
+
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchCourse" placeholder="ค้นหาคอร์ส...">
+                </div>
+
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>ชื่อวิชา</th>
+                                <th>รายละเอียด</th>
+                                <th>หน่วยกิต</th>
+                                <th>วันที่สร้าง</th>
+                                <th>จัดการ</th>
+                            </tr>
+                        </thead>
+                        <tbody id="coursesTableBody">
+                            <tr>
+                                <td colspan="6" class="loading">
+                                    <i class="fas fa-spinner fa-spin"></i> กำลังโหลดข้อมูล...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Enrollments Section -->
+            <section id="enrollments" class="section">
+                <div class="section-header">
+                    <h2><i class="fas fa-clipboard-list"></i> จัดการการลงทะเบียน</h2>
+                    <button class="btn btn-primary" onclick="openEnrollmentModal()">
+                        <i class="fas fa-plus"></i> ลงทะเบียนใหม่
+                    </button>
+                </div>
+
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchEnrollment" placeholder="ค้นหาการลงทะเบียน...">
+                </div>
+
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>ชื่อนักเรียน</th>
+                                <th>ชื่อวิชา</th>
+                                <th>วันที่ลงทะเบียน</th>
+                                <th>จัดการ</th>
+                            </tr>
+                        </thead>
+                        <tbody id="enrollmentsTableBody">
+                            <tr>
+                                <td colspan="5" class="loading">
+                                    <i class="fas fa-spinner fa-spin"></i> กำลังโหลดข้อมูล...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Student Modal -->
+    <div id="studentModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="studentModalTitle">เพิ่มนักเรียนใหม่</h3>
+                <button class="close" onclick="closeStudentModal()">&times;</button>
+            </div>
+            <form id="studentForm" onsubmit="handleStudentSubmit(event)">
+                <input type="hidden" id="studentId">
+                <div class="form-group">
+                    <label for="fullname">ชื่อ-นามสกุล <span class="required">*</span></label>
+                    <input type="text" id="fullname" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">อีเมล <span class="required">*</span></label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="major">สาขา</label>
+                    <input type="text" id="major">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeStudentModal()">ยกเลิก</button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> บันทึก
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Course Modal -->
+    <div id="courseModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="courseModalTitle">เพิ่มคอร์สใหม่</h3>
+                <button class="close" onclick="closeCourseModal()">&times;</button>
+            </div>
+            <form id="courseForm" onsubmit="handleCourseSubmit(event)">
+                <input type="hidden" id="courseId">
+                <div class="form-group">
+                    <label for="courseName">ชื่อวิชา <span class="required">*</span></label>
+                    <input type="text" id="courseName" required>
+                </div>
+                <div class="form-group">
+                    <label for="courseDescription">รายละเอียด</label>
+                    <textarea id="courseDescription" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="credit">หน่วยกิต <span class="required">*</span></label>
+                    <input type="number" id="credit" min="1" max="6" required>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeCourseModal()">ยกเลิก</button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> บันทึก
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Enrollment Modal -->
+    <div id="enrollmentModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>ลงทะเบียนเรียน</h3>
+                <button class="close" onclick="closeEnrollmentModal()">&times;</button>
+            </div>
+            <form id="enrollmentForm" onsubmit="handleEnrollmentSubmit(event)">
+                <div class="form-group">
+                    <label for="studentSelect">เลือกนักเรียน <span class="required">*</span></label>
+                    <select id="studentSelect" required>
+                        <option value="">-- เลือกนักเรียน --</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="courseSelect">เลือกวิชา <span class="required">*</span></label>
+                    <select id="courseSelect" required>
+                        <option value="">-- เลือกวิชา --</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeEnrollmentModal()">ยกเลิก</button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> ลงทะเบียน
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Student Course Management System | Made with ❤️ by Petchzz02</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

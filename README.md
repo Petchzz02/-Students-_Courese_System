@@ -1,362 +1,481 @@
-# Students Course System
+<div align="center">
 
-ระบบจัดการนักเรียนและคอร์สเรียน (Students Course Management System) เป็น RESTful API ที่พัฒนาด้วย Node.js, Express และ Supabase สำหรับจัดการข้อมูลนักเรียน คอร์สเรียน และการลงทะเบียนเรียน
+# 🎓 Student Course Management System API
 
-## คุณสมบัติ
+### ระบบจัดการนักเรียนและคอร์สเรียน
 
-- 📚 จัดการข้อมูลคอร์สเรียน (Courses)
-- 👨‍🎓 จัดการข้อมูลนักเรียน (Students)
-- 📝 จัดการการลงทะเบียนเรียน (Enrollments)
-- 🔄 RESTful API
-- 🗄️ เชื่อมต่อกับ Supabase Database
+[![Project Status](https://img.shields.io/badge/status-active-success?style=for-the-badge)](https://github.com/Petchzz02/-Students-_Courese_System)
+[![License](https://img.shields.io/badge/license-ISC-blue?style=for-the-badge)](LICENSE)
+[![Node.js](https://img.shields.io/badge/Node.js-16+-green?style=for-the-badge&logo=node.js)](https://nodejs.org/)
+[![Express](https://img.shields.io/badge/Express-5.1-black?style=for-the-badge&logo=express)](https://expressjs.com/)
+[![Supabase](https://img.shields.io/badge/Supabase-Database-orange?style=for-the-badge&logo=supabase)](https://supabase.com/)
 
-## เทคโนโลยีที่ใช้
+**RESTful API ที่พัฒนาด้วย Node.js, Express และ Supabase สำหรับจัดการข้อมูลนักเรียน คอร์สเรียน และการลงทะเบียนเรียน**
 
-- **Node.js** - JavaScript runtime
-- **Express.js** - Web framework
-- **Supabase** - Backend as a Service (Database)
-- **dotenv** - Environment variables management
-- **cors** - Cross-Origin Resource Sharing
-- **body-parser** - Request body parsing
+[🚀 Live Demo](https://students-courese-system.onrender.com) • [📖 Documentation](#-api-endpoints) • [🐛 Report Bug](https://github.com/Petchzz02/-Students-_Courese_System/issues)
 
-## ความต้องการของระบบ
+</div>
+
+---
+
+---
+
+## 🌟 คุณสมบัติของระบบ (Features)
+
+<table>
+<tr>
+<td width="50%">
+
+### 👨‍🎓 จัดการนักเรียน (Students)
+- ✅ สร้างข้อมูลนักเรียนใหม่
+- ✅ ดูรายชื่อนักเรียนทั้งหมด
+- ✅ ค้นหานักเรียนตาม ID
+- ✅ แก้ไขข้อมูลนักเรียน
+- ✅ ลบข้อมูลนักเรียน
+
+</td>
+<td width="50%">
+
+### 📚 จัดการคอร์สเรียน (Courses)
+- ✅ สร้างคอร์สเรียนใหม่
+- ✅ ดูรายการคอร์สทั้งหมด
+- ✅ ค้นหาคอร์สตาม ID
+- ✅ แก้ไขข้อมูลคอร์ส
+- ✅ ลบคอร์สเรียน
+
+</td>
+</tr>
+<tr>
+<td width="50%">
+
+### ✏️ การลงทะเบียน (Enrollments)
+- ✅ ลงทะเบียนนักเรียนเข้าคอร์ส
+- ✅ ดูประวัติการลงทะเบียนทั้งหมด
+- ✅ ยกเลิกการลงทะเบียน
+- ✅ ตรวจสอบการลงทะเบียนซ้ำ
+
+</td>
+<td width="50%">
+
+### 🗄️ Database & Backend
+- ✅ เชื่อมต่อ Supabase (PostgreSQL)
+- ✅ RESTful API Design
+- ✅ Error Handling
+- ✅ CORS Support
+
+</td>
+</tr>
+</table>
+
+---
+
+## 🛠 เทคโนโลยีที่ใช้ (Tech Stack)
+
+<div align="center">
+
+| Technology | Description | Version |
+|:----------:|:------------|:-------:|
+| ![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat&logo=node.js&logoColor=white) | JavaScript Runtime | 16+ |
+| ![Express](https://img.shields.io/badge/Express-000000?style=flat&logo=express&logoColor=white) | Web Framework | 5.1.0 |
+| ![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=flat&logo=supabase&logoColor=white) | Database (PostgreSQL) | Latest |
+| ![Nodemon](https://img.shields.io/badge/Nodemon-76D04B?style=flat&logo=nodemon&logoColor=white) | Development Tool | 3.1.11 |
+| ![dotenv](https://img.shields.io/badge/.env-ECD53F?style=flat&logo=.env&logoColor=black) | Environment Variables | 17.2.3 |
+
+</div>
+
+---
+
+## ⚙️ การติดตั้งและรันระบบ (Installation)
+
+### 📋 ความต้องการของระบบ (Prerequisites)
 
 ก่อนเริ่มต้น ตรวจสอบให้แน่ใจว่าคุณได้ติดตั้งโปรแกรมต่อไปนี้:
 
-- Node.js (เวอร์ชัน 14.0 ขึ้นไป) - [ดาวน์โหลด](https://nodejs.org/)
-- npm (มาพร้อมกับ Node.js)
-- Git - [ดาวน์โหลด](https://git-scm.com/)
-- บัญชี Supabase - [สมัคร](https://supabase.com/)
+- ✅ **Node.js** (เวอร์ชัน 14.0 ขึ้นไป) - [ดาวน์โหลด](https://nodejs.org/)
+- ✅ **npm** (มาพร้อมกับ Node.js)
+- ✅ **Git** - [ดาวน์โหลด](https://git-scm.com/)
+- ✅ **Supabase Account** - [สมัครฟรี](https://supabase.com/)
 
-## วิธีติดตั้ง
+### 🚀 ขั้นตอนการติดตั้ง
 
-### 1. Clone Repository
+#### 1️⃣ Clone Repository
 
 ```bash
 git clone https://github.com/Petchzz02/-Students-_Courese_System.git
 cd -Students-_Courese_System
 ```
 
-### 2. ติดตั้ง Dependencies
+#### 2️⃣ ติดตั้ง Dependencies
 
 ```bash
 npm install
 ```
 
-### 3. ตั้งค่า Environment Variables
+#### 3️⃣ ตั้งค่า Environment Variables
 
-สร้างไฟล์ `.env` ในโฟลเดอร์หลักของโปรเจค:
-
-```bash
-# สำหรับ Windows PowerShell
-New-Item .env
-
-# หรือใช้ notepad
-notepad .env
-```
-
-จากนั้นเพิ่มข้อมูลต่อไปนี้ในไฟล์ `.env`:
+สร้างไฟล์ `.env` ในโฟลเดอร์หลัก:
 
 ```env
-SUPABASE_URL=your_supabase_url_here
-SUPABASE_KEY=your_supabase_anon_key_here
+SUPABASE_URL=your_supabase_url
+SUPABASE_KEY=your_supabase_anon_key
 PORT=3000
 ```
 
-**วิธีหา Supabase URL และ Key:**
-1. เข้าสู่ระบบ [Supabase Dashboard](https://app.supabase.com/)
-2. เลือกโปรเจคของคุณ
-3. ไปที่ Settings → API
-4. คัดลอก `URL` และ `anon/public key`
+> 💡 **วิธีหา Supabase Credentials:**
+> 1. เข้าสู่ระบบ [Supabase Dashboard](https://app.supabase.com/)
+> 2. เลือกโปรเจคของคุณ
+> 3. ไปที่ **Settings** → **API**
+> 4. คัดลอก **URL** และ **anon/public key**
 
-### 4. ตั้งค่า Database บน Supabase
+#### 4️⃣ สร้างตารางใน Supabase
 
-สร้างตารางในฐานข้อมูล Supabase ของคุณ:
+รันคำสั่ง SQL นี้ใน **SQL Editor** ของ Supabase:
 
-#### ตาราง students
 ```sql
+-- 1. ตาราง Students
 CREATE TABLE students (
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    email VARCHAR(255) UNIQUE NOT NULL,
-    created_at TIMESTAMP DEFAULT NOW()
+  id BIGINT GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
+  fullname TEXT NOT NULL,
+  email TEXT UNIQUE NOT NULL,
+  major TEXT,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc', NOW())
 );
-```
 
-#### ตาราง courses
-```sql
+-- 2. ตาราง Courses
 CREATE TABLE courses (
-    id SERIAL PRIMARY KEY,
-    title VARCHAR(255) NOT NULL,
-    description TEXT,
-    created_at TIMESTAMP DEFAULT NOW()
+  id BIGINT GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
+  name TEXT NOT NULL,
+  description TEXT,
+  credit INT NOT NULL,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc', NOW())
 );
-```
 
-#### ตาราง enrollments
-```sql
+-- 3. ตาราง Enrollments
 CREATE TABLE enrollments (
-    id SERIAL PRIMARY KEY,
-    student_id INTEGER REFERENCES students(id) ON DELETE CASCADE,
-    course_id INTEGER REFERENCES courses(id) ON DELETE CASCADE,
-    enrolled_at TIMESTAMP DEFAULT NOW(),
-    UNIQUE(student_id, course_id)
+  id BIGINT GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
+  student_id BIGINT REFERENCES students(id) ON DELETE CASCADE,
+  course_id BIGINT REFERENCES courses(id) ON DELETE CASCADE,
+  enrollment_date TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc', NOW())
 );
 ```
 
-## วิธีรันระบบ
-
-### รันแบบปกติ
+#### 5️⃣ รันเซิร์ฟเวอร์
 
 ```bash
+# Development Mode (Auto-reload with Nodemon)
+npm run dev
+
+# Production Mode
 npm start
 ```
 
-หรือ
+✅ **Server กำลังทำงานที่:** `http://localhost:3000`
 
+> 🌐 เปิด browser ที่ `http://localhost:3000` เพื่อดูหน้า API Documentation
+
+---
+
+## 🎨 Frontend Interface
+
+ระบบมาพร้อมกับ Web Interface ที่สวยงามและใช้งานง่าย!
+
+### ✨ คุณสมบัติของ Frontend
+
+- **📱 Responsive Design** - รองรับทุกขนาดหน้าจอ
+- **🎯 User-Friendly Interface** - ใช้งานง่าย เข้าใจได้ทันที
+- **⚡ Real-time Updates** - อัพเดทข้อมูลแบบ real-time
+- **🔍 Search Functionality** - ค้นหาข้อมูลได้ทุกหมวด
+- **✅ Form Validation** - ตรวจสอบข้อมูลก่อนส่ง
+- **🎨 Modern UI/UX** - ออกแบบสวยงาม ใช้สีสันสบายตา
+
+### 📄 หน้าเว็บที่มี
+
+1. **หน้าจัดการนักเรียน** - เพิ่ม แก้ไข ลบ และค้นหานักเรียน
+2. **หน้าจัดการคอร์ส** - เพิ่ม แก้ไข ลบ และค้นหาคอร์สเรียน
+3. **หน้าจัดการการลงทะเบียน** - ลงทะเบียนและยกเลิกการลงทะเบียน
+
+### 🚀 วิธีเข้าใช้งาน
+
+เมื่อ server รันแล้ว เปิด browser ที่:
+
+```
+http://localhost:3000
+```
+
+จะเห็นหน้า Web Interface พร้อมใช้งานทันที!
+
+### 📸 Preview
+
+- **Navigation Bar** - สลับระหว่างหน้าต่างๆ ง่ายๆ
+- **Data Tables** - แสดงข้อมูลในรูปแบบตาราง
+- **Modal Forms** - ฟอร์มเพิ่ม/แก้ไขข้อมูลแบบ popup
+- **Toast Notifications** - แจ้งเตือนสถานะการทำงาน
+---
+
+## 📡 API Endpoints
+
+### 🏠 Root Endpoint
+
+```http
+GET /
+```
+
+แสดงหน้า API Documentation พร้อมรายการ endpoints ทั้งหมด
+
+---
+
+### 1️⃣ Students (นักเรียน)
+
+<details>
+<summary>📖 คลิกเพื่อดู API สำหรับนักเรียน</summary>
+
+| Method | Endpoint | Description | Request Body |
+|--------|----------|-------------|--------------|
+| `GET` | `/api/students` | ดึงข้อมูลนักเรียนทั้งหมด | - |
+| `GET` | `/api/students/:id` | ดึงข้อมูลนักเรียนตาม ID | - |
+| `POST` | `/api/students` | เพิ่มนักเรียนใหม่ | `{ "fullname": "string", "email": "string", "major": "string" }` |
+| `PUT` | `/api/students/:id` | แก้ไขข้อมูลนักเรียน | `{ "fullname": "string", "major": "string" }` |
+| `DELETE` | `/api/students/:id` | ลบข้อมูลนักเรียน | - |
+
+#### ตัวอย่างการใช้งาน
+
+```javascript
+// GET - ดึงนักเรียนทั้งหมด
+fetch('http://localhost:3000/api/students')
+  .then(res => res.json())
+  .then(data => console.log(data));
+
+// POST - เพิ่มนักเรียนใหม่
+fetch('http://localhost:3000/api/students', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    fullname: "John Doe",
+    email: "john@email.com",
+    major: "IT"
+  })
+});
+```
+
+</details>
+
+---
+
+### 2️⃣ Courses (วิชาเรียน)
+
+<details>
+<summary>📖 คลิกเพื่อดู API สำหรับคอร์สเรียน</summary>
+
+| Method | Endpoint | Description | Request Body |
+|--------|----------|-------------|--------------|
+| `GET` | `/api/courses` | ดึงรายวิชาทั้งหมด | - |
+| `GET` | `/api/courses/:id` | ดึงข้อมูลคอร์สตาม ID | - |
+| `POST` | `/api/courses` | เพิ่มวิชาเรียนใหม่ | `{ "name": "string", "description": "string", "credit": number }` |
+| `PUT` | `/api/courses/:id` | แก้ไขข้อมูลคอร์ส | `{ "name": "string", "description": "string", "credit": number }` |
+| `DELETE` | `/api/courses/:id` | ลบคอร์สเรียน | - |
+
+#### ตัวอย่างการใช้งาน
+
+```javascript
+// POST - เพิ่มคอร์สใหม่
+fetch('http://localhost:3000/api/courses', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    name: "Basic Node.js",
+    description: "Backend Development",
+    credit: 3
+  })
+});
+```
+
+</details>
+
+---
+
+### 3️⃣ Enrollments (การลงทะเบียน)
+
+<details>
+<summary>📖 คลิกเพื่อดู API สำหรับการลงทะเบียน</summary>
+
+| Method | Endpoint | Description | Request Body |
+|--------|----------|-------------|--------------|
+| `GET` | `/api/enrollments` | ดูประวัติการลงทะเบียนทั้งหมด | - |
+| `GET` | `/api/enrollments/:id` | ดูการลงทะเบียนตาม ID | - |
+| `POST` | `/api/enrollments` | ลงทะเบียนเรียน | `{ "student_id": number, "course_id": number }` |
+| `DELETE` | `/api/enrollments/:id` | ยกเลิกการลงทะเบียน | - |
+
+#### ตัวอย่างการใช้งาน
+
+```javascript
+// POST - ลงทะเบียนเรียน
+fetch('http://localhost:3000/api/enrollments', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    student_id: 1,
+    course_id: 1
+  })
+});
+```
+
+</details>---
+
+## 🧪 System Test Cases (เอกสารทดสอบระบบ)
+
+### 📊 สรุปผลการทดสอบ API ผ่าน Postman
+
+<details>
+<summary><b>TC-01: การจัดการข้อมูลนักเรียน (Manage Students)</b></summary>
+
+| Test ID | Scenario | Input | Expected Result | Status |
+|---------|----------|-------|-----------------|--------|
+| ST-01 | ดึงข้อมูลนักเรียนทั้งหมด | `GET /api/students` | Status 200 OK + JSON Array | ✅ Pass |
+| ST-02 | เพิ่มนักเรียนใหม่ (สำเร็จ) | `POST /api/students`<br>`{"fullname":"Test User","email":"test@mail.com","major":"IT"}` | Status 201 Created | ✅ Pass |
+| ST-03 | เพิ่มนักเรียน (ข้อมูลไม่ครบ) | `POST /api/students`<br>`{"email":"fail@mail.com"}` | Status 400 Bad Request | ✅ Pass |
+| ST-04 | แก้ไขข้อมูลนักเรียน | `PUT /api/students/1`<br>`{"fullname":"Updated Name","major":"CS"}` | Status 200 OK + Updated Data | ✅ Pass |
+| ST-05 | ลบนักเรียน | `DELETE /api/students/1` | Status 200 OK + Delete Message | ✅ Pass |
+
+</details>
+
+<details>
+<summary><b>TC-02: การจัดการวิชาเรียน (Manage Courses)</b></summary>
+
+| Test ID | Scenario | Input | Expected Result | Status |
+|---------|----------|-------|-----------------|--------|
+| CS-01 | ดึงรายวิชาทั้งหมด | `GET /api/courses` | Status 200 OK + JSON Array | ✅ Pass |
+| CS-02 | เพิ่มวิชาเรียนใหม่ | `POST /api/courses`<br>`{"name":"Basic Node.js","description":"Intro to Backend","credit":3}` | Status 201 Created | ✅ Pass |
+
+</details>
+
+<details>
+<summary><b>TC-03: การลงทะเบียนเรียน (Enrollments)</b></summary>
+
+| Test ID | Scenario | Input | Expected Result | Status |
+|---------|----------|-------|-----------------|--------|
+| EN-01 | ลงทะเบียนเรียน (สำเร็จ) | `POST /api/enrollments`<br>`{"student_id":1,"course_id":1}` | Status 201 Created | ✅ Pass |
+| EN-02 | ลงทะเบียน (รหัสนักเรียนผิด) | `POST /api/enrollments`<br>`{"student_id":9999,"course_id":1}` | Status 400 Bad Request | ✅ Pass |
+
+</details>---
+
+## 🚀 Deployment
+
+<div align="center">
+
+### 🌐 Live Demo
+
+ระบบนี้ได้ Deploy บน **Render** แล้ว
+
+[![Deploy Status](https://img.shields.io/badge/Deploy-Success-brightgreen?style=for-the-badge&logo=render)](https://students-courese-system.onrender.com)
+
+**🔗 Live URL:** [https://students-courese-system.onrender.com](https://students-courese-system.onrender.com)
+
+</div>
+
+---
+
+## 📂 โครงสร้างโปรเจค (Project Structure)
+
+```
+📦 -Students-_Courese_System
+┣ 📂 public/                # Frontend files
+┃ ┣ 📜 index.html          # Main HTML page
+┃ ┣ 📜 style.css           # Styles
+┃ ┗ 📜 script.js           # JavaScript logic
+┣ 📂 routes/
+┃ ┣ 📜 students.js         # Routes สำหรับจัดการนักเรียน
+┃ ┣ 📜 courses.js          # Routes สำหรับจัดการคอร์ส
+┃ ┗ 📜 enrollments.js      # Routes สำหรับจัดการการลงทะเบียน
+┣ 📜 .env                  # Environment variables (ไม่ commit)
+┣ 📜 .gitignore            # ไฟล์ที่ไม่ต้องการ track
+┣ 📜 package.json          # Dependencies และ scripts
+┣ 📜 server.js             # Entry point ของแอปพลิเคชัน
+┗ 📜 README.md             # เอกสารนี้
+```
+
+---
+
+## 🔧 การแก้ไขปัญหา (Troubleshooting)
+
+<details>
+<summary><b>❌ Cannot find module</b></summary>
+
+**สาเหตุ:** Dependencies ยังไม่ได้ติดตั้ง
+
+**วิธีแก้:**
 ```bash
-node server.js
+npm install
 ```
 
-### รันแบบ Development (Auto-reload)
+</details>
 
-```bash
-npm run dev
+<details>
+<summary><b>❌ Port already in use</b></summary>
+
+**สาเหตุ:** Port 3000 ถูกใช้งานอยู่
+
+**วิธีแก้:**
+1. เปลี่ยน PORT ในไฟล์ `.env`
+```env
+PORT=3001
 ```
+2. หรือปิดโปรแกรมที่ใช้ port 3000
 
-Server จะเริ่มทำงานที่ `http://localhost:3000`
+</details>
 
-**ทดสอบ API:**
-- เปิด browser ที่ `http://localhost:3000` เพื่อดูหน้า index และรายการ API endpoints ทั้งหมด
-- ใช้ Postman หรือ Thunder Client เพื่อทดสอบ API
+<details>
+<summary><b>❌ Supabase connection error</b></summary>
 
-## API Endpoints
+**สาเหตุ:** การเชื่อมต่อ Supabase ผิดพลาด
 
-### 🏠 Root
-- `GET /` - หน้าแรก แสดงรายการ API endpoints ทั้งหมดพร้อมคำอธิบาย
-
-### 👨‍🎓 Students
-
-- `GET /api/students` - ดึงข้อมูลนักเรียนทั้งหมด
-- `GET /api/students/:id` - ดึงข้อมูลนักเรียนตาม ID
-- `POST /api/students` - สร้างนักเรียนใหม่
-  - Body: `{ "name": "string", "email": "string" }`
-- `PUT /api/students/:id` - อัพเดทข้อมูลนักเรียน
-  - Body: `{ "name": "string", "email": "string" }`
-- `DELETE /api/students/:id` - ลบนักเรียน
-
-### 📚 Courses
-
-- `GET /api/courses` - ดึงข้อมูลคอร์สทั้งหมด
-- `GET /api/courses/:id` - ดึงข้อมูลคอร์สตาม ID
-- `POST /api/courses` - สร้างคอร์สใหม่
-  - Body: `{ "title": "string", "description": "string" }`
-- `PUT /api/courses/:id` - อัพเดทข้อมูลคอร์ส
-  - Body: `{ "title": "string", "description": "string" }`
-- `DELETE /api/courses/:id` - ลบคอร์ส
-
-### ✏️ Enrollments
-
-- `GET /api/enrollments` - ดึงข้อมูลการลงทะเบียนทั้งหมด
-- `GET /api/enrollments/:id` - ดึงข้อมูลการลงทะเบียนตาม ID
-- `POST /api/enrollments` - สร้างการลงทะเบียนใหม่
-  - Body: `{ "student_id": 1, "course_id": 1 }`
-- `DELETE /api/enrollments/:id` - ลบการลงทะเบียน
-
-## ตัวอย่างการใช้งาน API
-
-### ดูข้อมูล API ทั้งหมด (หน้า Index)
-
-เปิด browser หรือใช้ curl:
-
-```bash
-curl http://localhost:3000/
-```
-
-จะแสดงข้อมูล JSON ที่มี:
-- รายการ endpoints ทั้งหมด
-- คำอธิบายแต่ละ endpoint
-- ตัวอย่าง request body
-
-### สร้างนักเรียนใหม่
-
-```bash
-# Windows PowerShell
-Invoke-RestMethod -Uri "http://localhost:3000/api/students" -Method POST -ContentType "application/json" -Body '{"name":"John Doe","email":"john@example.com"}'
-
-# หรือใช้ curl
-curl -X POST http://localhost:3000/api/students -H "Content-Type: application/json" -d "{\"name\":\"John Doe\",\"email\":\"john@example.com\"}"
-```
-
-### ดึงข้อมูลนักเรียนทั้งหมด
-
-```bash
-# Windows PowerShell
-Invoke-RestMethod -Uri "http://localhost:3000/api/students" -Method GET
-
-# หรือใช้ curl
-curl http://localhost:3000/api/students
-```
-
-### สร้างคอร์สใหม่
-
-```bash
-# Windows PowerShell
-Invoke-RestMethod -Uri "http://localhost:3000/api/courses" -Method POST -ContentType "application/json" -Body '{"title":"Web Development","description":"Learn HTML, CSS, JavaScript"}'
-
-# หรือใช้ curl
-curl -X POST http://localhost:3000/api/courses -H "Content-Type: application/json" -d "{\"title\":\"Web Development\",\"description\":\"Learn HTML, CSS, JavaScript\"}"
-```
-
-### ลงทะเบียนเรียน
-
-```bash
-# Windows PowerShell
-Invoke-RestMethod -Uri "http://localhost:3000/api/enrollments" -Method POST -ContentType "application/json" -Body '{"student_id":1,"course_id":1}'
-
-# หรือใช้ curl
-curl -X POST http://localhost:3000/api/enrollments -H "Content-Type: application/json" -d "{\"student_id\":1,\"course_id\":1}"
-```
-
-## โครงสร้างโปรเจค
-
-```
--Students-_Courese_System/
-│
-├── routes/
-│   ├── students.js      # Routes สำหรับจัดการนักเรียน
-│   ├── courses.js       # Routes สำหรับจัดการคอร์ส
-│   └── enrollments.js   # Routes สำหรับจัดการการลงทะเบียน
-│
-├── .env                 # Environment variables (ไม่ commit ลง Git)
-├── .gitignore          # ไฟล์ที่ไม่ต้องการ track ใน Git
-├── package.json        # Dependencies และ scripts
-├── server.js           # Entry point ของแอปพลิเคชัน
-└── README.md          # เอกสารนี้
-```
-
-## การแก้ไขปัญหา
-
-### ปัญหา: Cannot find module
-
-**แก้ไข:** ตรวจสอบว่าได้รัน `npm install` แล้ว
-
-### ปัญหา: Port already in use
-
-**แก้ไข:** เปลี่ยน PORT ในไฟล์ `.env` เป็นเลขอื่น หรือปิดโปรแกรมที่ใช้ port นั้นอยู่
-
-### ปัญหา: Supabase connection error
-
-**แก้ไข:** 
-- ตรวจสอบว่า `SUPABASE_URL` และ `SUPABASE_KEY` ในไฟล์ `.env` ถูกต้อง
+**วิธีแก้:**
+- ตรวจสอบ `SUPABASE_URL` และ `SUPABASE_KEY` ในไฟล์ `.env`
 - ตรวจสอบว่าได้สร้างตารางในฐานข้อมูลแล้ว
+- ตรวจสอบ Internet connection
 
-## Git Workflow
+</details>
 
-### 1. เริ่มต้นใช้งาน Git
+---
 
-```bash
-# ตรวจสอบสถานะ
-git status
+## 🤝 การมีส่วนร่วม (Contributing)
 
-# ตรวจสอบ branch ปัจจุบัน
-git branch
-```
+เรายินดีรับ contributions จากทุกคน! 
 
-### 2. สร้าง Branch ใหม่สำหรับ Feature
+1. 🍴 Fork โปรเจค
+2. 🌿 สร้าง Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. 💾 Commit การเปลี่ยนแปลง (`git commit -m 'Add some AmazingFeature'`)
+4. 📤 Push ไปยัง Branch (`git push origin feature/AmazingFeature`)
+5. 🔃 เปิด Pull Request
 
-```bash
-# สร้างและเปลี่ยนไปยัง branch ใหม่
-git checkout -b feature/new-feature-name
+---
 
-# หรือใช้คำสั่งใหม่
-git switch -c feature/new-feature-name
-```
+## 📜 License
 
-### 3. ทำการแก้ไขและ Commit
+This project is licensed under the **ISC License**
 
-```bash
-# เพิ่มไฟล์ที่ต้องการ commit
-git add .
+---
 
-# หรือเพิ่มเฉพาะไฟล์ที่ต้องการ
-git add server.js routes/students.js
+<div align="center">
 
-# Commit พร้อมข้อความ
-git commit -m "Add new feature: description of changes"
-```
+## 👨‍💻 ผู้พัฒนา (Developer)
 
-### 4. Push ขึ้น Remote Repository
+**Petchzz02**
 
-```bash
-# Push branch ไปยัง GitHub
-git push origin feature/new-feature-name
+[![GitHub](https://img.shields.io/badge/GitHub-Petchzz02-181717?style=for-the-badge&logo=github)](https://github.com/Petchzz02)
+[![Repository](https://img.shields.io/badge/Repository-Students__Course__System-blue?style=for-the-badge&logo=github)](https://github.com/Petchzz02/-Students-_Courese_System)
 
-# หรือ push branch ปัจจุบัน
-git push -u origin HEAD
-```
+---
 
-### 5. Pull Request และ Merge
+### 📞 ติดต่อ (Contact)
 
-1. ไปที่ GitHub repository
-2. สร้าง Pull Request จาก branch ของคุณไปยัง `main`
-3. รอการ review และ approve
-4. Merge Pull Request
+หากมีคำถามหรือพบปัญหา กรุณา:
 
-### 6. Update Local Main Branch
+[![Issues](https://img.shields.io/badge/Report-Issue-red?style=for-the-badge&logo=github)](https://github.com/Petchzz02/-Students-_Courese_System/issues)
 
-```bash
-# เปลี่ยนกลับไปยัง main branch
-git checkout main
+---
 
-# Pull การเปลี่ยนแปลงล่าสุด
-git pull origin main
+**Made with ❤️ by Petchzz02**
 
-# ลบ branch ที่ merge แล้ว (ถ้าต้องการ)
-git branch -d feature/new-feature-name
-```
+⭐ ถ้าชอบโปรเจคนี้ กด Star ให้หน่อยนะครับ!
 
-### คำสั่ง Git ที่ใช้บ่อย
-
-```bash
-# ตรวจสอบสถานะไฟล์
-git status
-
-# ดูประวัติ commit
-git log --oneline
-
-# ดูความแตกต่างของไฟล์
-git diff
-
-# ยกเลิกการแก้ไขที่ยังไม่ได้ stage
-git checkout -- <file>
-
-# ยกเลิกการ add (unstage)
-git reset HEAD <file>
-
-# ดึงข้อมูลล่าสุดจาก remote
-git fetch origin
-
-# ดู branch ทั้งหมด
-git branch -a
-```
-
-## การมีส่วนร่วม (Contributing)
-
-1. Fork โปรเจค
-2. สร้าง Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit การเปลี่ยนแปลง (`git commit -m 'Add some AmazingFeature'`)
-4. Push ไปยัง Branch (`git push origin feature/AmazingFeature`)
-5. เปิด Pull Request
-
-## License
-
-ISC
-
-## ผู้พัฒนา
-
-- Petchzz02 - [GitHub Profile](https://github.com/Petchzz02)
-
-## ติดต่อ
-
-หากมีคำถามหรือพบปัญหา กรุณาเปิด [Issue](https://github.com/Petchzz02/-Students-_Courese_System/issues) บน GitHub
+</div>
