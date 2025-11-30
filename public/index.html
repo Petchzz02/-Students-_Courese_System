@@ -3,29 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Student Course Management System - ระบบจัดการนักเรียนและคอร์สเรียน">
+    <meta name="author" content="Petchzz02">
     <title>🎓 Student Course Management System</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/brands.min.css">
 </head>
 <body>
     <!-- Header -->
     <header class="header">
         <div class="container">
-            <div class="logo">
-                <i class="fas fa-graduation-cap"></i>
-                <h1>Student Course Management System</h1>
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <div class="logo-text">
+                        <h1>Student Course Management</h1>
+                        <span class="logo-subtitle">ระบบจัดการนักเรียนและคอร์สเรียน</span>
+                    </div>
+                </div>
+                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <nav class="nav">
+                    <button class="nav-btn active" data-section="students">
+                        <i class="fas fa-user-graduate"></i> 
+                        <span>นักเรียน</span>
+                    </button>
+                    <button class="nav-btn" data-section="courses">
+                        <i class="fas fa-book"></i> 
+                        <span>คอร์สเรียน</span>
+                    </button>
+                    <button class="nav-btn" data-section="enrollments">
+                        <i class="fas fa-clipboard-list"></i> 
+                        <span>การลงทะเบียน</span>
+                    </button>
+                </nav>
             </div>
-            <nav class="nav">
-                <button class="nav-btn active" data-section="students">
-                    <i class="fas fa-user-graduate"></i> นักเรียน
-                </button>
-                <button class="nav-btn" data-section="courses">
-                    <i class="fas fa-book"></i> คอร์สเรียน
-                </button>
-                <button class="nav-btn" data-section="enrollments">
-                    <i class="fas fa-clipboard-list"></i> การลงทะเบียน
-                </button>
-            </nav>
         </div>
     </header>
 
@@ -244,7 +258,69 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Student Course Management System | Made with ❤️ by Petchzz02</p>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-graduation-cap"></i>
+                        <h3>Student Course Management</h3>
+                    </div>
+                    <p class="footer-description">
+                        ระบบจัดการนักเรียนและคอร์สเรียนแบบครบวงจร<br>
+                        พัฒนาด้วย Node.js, Express และ Supabase
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>ลิงก์ด่วน</h4>
+                    <ul class="footer-links">
+                        <li><a href="#students" onclick="switchToSection('students')"><i class="fas fa-user-graduate"></i> จัดการนักเรียน</a></li>
+                        <li><a href="#courses" onclick="switchToSection('courses')"><i class="fas fa-book"></i> จัดการคอร์ส</a></li>
+                        <li><a href="#enrollments" onclick="switchToSection('enrollments')"><i class="fas fa-clipboard-list"></i> การลงทะเบียน</a></li>
+                        <li><a href="/api" target="_blank"><i class="fas fa-code"></i> API Documentation</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>ติดต่อเรา</h4>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-envelope"></i> Petch1235@gmail.com</li>
+                        <li><i class="fas fa-phone"></i> +66 (0) 6-405-9267</li>
+                        <li><i class="fas fa-map-marker-alt"></i> สมุทรปราการ, ประเทศไทย</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>เทคโนโลยี</h4>
+                    <div class="tech-badges">
+                        <span class="tech-badge"><i class="fab fa-node-js"></i> Node.js</span>
+                        <span class="tech-badge"><i class="fas fa-database"></i> Supabase</span>
+                        <span class="tech-badge"><i class="fas fa-code"></i> Express</span>
+                        <span class="tech-badge"><i class="fab fa-github"></i> GitHub</span>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://github.com/Petchzz02" target="_blank" title="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://github.com/Petchzz02/-Students-_Courese_System" target="_blank" title="Repository">
+                            <i class="fas fa-code-branch"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    <p>&copy; 2025 Student Course Management System. All rights reserved.</p>
+                    <p class="developer-credit">Developed with <i class="fas fa-heart"></i> by <strong>Petchzz02</strong></p>
+                </div>
+                <div class="footer-meta">
+                    <span>Version 1.0.0</span>
+                    <span>|</span>
+                    <a href="https://github.com/Petchzz02/-Students-_Courese_System" target="_blank">View Source</a>
+                    <span>|</span>
+                    <span>ISC License</span>
+                </div>
+            </div>
         </div>
     </footer>
 

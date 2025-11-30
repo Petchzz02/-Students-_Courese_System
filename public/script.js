@@ -14,6 +14,29 @@ document.addEventListener('DOMContentLoaded', () => {
     setupSearch();
 });
 
+// Mobile menu toggle
+function toggleMobileMenu() {
+    const nav = document.querySelector('.nav');
+    nav.classList.toggle('active');
+}
+
+// Switch section helper for footer links
+function switchToSection(sectionName) {
+    switchSection(sectionName);
+    
+    // Close mobile menu if open
+    const nav = document.querySelector('.nav');
+    nav.classList.remove('active');
+    
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    
+    // Load data
+    if (sectionName === 'students') loadStudents();
+    else if (sectionName === 'courses') loadCourses();
+    else if (sectionName === 'enrollments') loadEnrollments();
+}
+
 // Navigation
 function setupNavigation() {
     const navBtns = document.querySelectorAll('.nav-btn');
@@ -21,6 +44,10 @@ function setupNavigation() {
         btn.addEventListener('click', () => {
             const section = btn.dataset.section;
             switchSection(section);
+            
+            // Close mobile menu
+            const nav = document.querySelector('.nav');
+            nav.classList.remove('active');
             
             // Load data when switching
             if (section === 'students') loadStudents();
@@ -92,12 +119,12 @@ function renderStudents() {
     
     tbody.innerHTML = students.map(student => `
         <tr>
-            <td>${student.id}</td>
-            <td>${student.fullname || student.name || '-'}</td>
-            <td>${student.email}</td>
-            <td>${student.major || '-'}</td>
-            <td>${formatDate(student.created_at)}</td>
-            <td>
+            <td data-label="ID">${student.id}</td>
+            <td data-label="ชื่อ-นามสกุล">${student.fullname || student.name || '-'}</td>
+            <td data-label="อีเมล">${student.email}</td>
+            <td data-label="สาขา">${student.major || '-'}</td>
+            <td data-label="วันที่สร้าง">${formatDate(student.created_at)}</td>
+            <td data-label="จัดการ">
                 <div class="action-buttons">
                     <button class="btn btn-success" onclick="editStudent(${student.id})">
                         <i class="fas fa-edit"></i> แก้ไข
@@ -231,12 +258,12 @@ function renderCourses() {
     
     tbody.innerHTML = courses.map(course => `
         <tr>
-            <td>${course.id}</td>
-            <td>${course.name || course.title || '-'}</td>
-            <td>${course.description || '-'}</td>
-            <td>${course.credit || '-'}</td>
-            <td>${formatDate(course.created_at)}</td>
-            <td>
+            <td data-label="ID">${course.id}</td>
+            <td data-label="ชื่อวิชา">${course.name || course.title || '-'}</td>
+            <td data-label="รายละเอียด">${course.description || '-'}</td>
+            <td data-label="หน่วยกิต">${course.credit || '-'}</td>
+            <td data-label="วันที่สร้าง">${formatDate(course.created_at)}</td>
+            <td data-label="จัดการ">
                 <div class="action-buttons">
                     <button class="btn btn-success" onclick="editCourse(${course.id})">
                         <i class="fas fa-edit"></i> แก้ไข
@@ -399,11 +426,11 @@ function renderEnrollments() {
         
         return `
             <tr>
-                <td>${enrollment.id}</td>
-                <td>${student ? (student.fullname || student.name) : 'ไม่ระบุ'}</td>
-                <td>${course ? (course.name || course.title) : 'ไม่ระบุ'}</td>
-                <td>${formatDate(enrollment.enrollment_date || enrollment.enrolled_at)}</td>
-                <td>
+                <td data-label="ID">${enrollment.id}</td>
+                <td data-label="ชื่อนักเรียน">${student ? (student.fullname || student.name) : 'ไม่ระบุ'}</td>
+                <td data-label="ชื่อวิชา">${course ? (course.name || course.title) : 'ไม่ระบุ'}</td>
+                <td data-label="วันที่ลงทะเบียน">${formatDate(enrollment.enrollment_date || enrollment.enrolled_at)}</td>
+                <td data-label="จัดการ">
                     <button class="btn btn-danger" onclick="deleteEnrollment(${enrollment.id})">
                         <i class="fas fa-trash"></i> ยกเลิก
                     </button>
