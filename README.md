@@ -109,25 +109,16 @@ CREATE TABLE enrollments (
 ### รันแบบปกติ
 
 ```bash
+npm start
+```
+
+หรือ
+
+```bash
 node server.js
 ```
 
 ### รันแบบ Development (Auto-reload)
-
-```bash
-npx nodemon server.js
-```
-
-หรือเพิ่ม script ใน `package.json`:
-
-```json
-"scripts": {
-  "start": "node server.js",
-  "dev": "nodemon server.js"
-}
-```
-
-จากนั้นรันด้วย:
 
 ```bash
 npm run dev
@@ -135,55 +126,96 @@ npm run dev
 
 Server จะเริ่มทำงานที่ `http://localhost:3000`
 
+**ทดสอบ API:**
+- เปิด browser ที่ `http://localhost:3000` เพื่อดูหน้า index และรายการ API endpoints ทั้งหมด
+- ใช้ Postman หรือ Thunder Client เพื่อทดสอบ API
+
 ## API Endpoints
 
-### Students
+### 🏠 Root
+- `GET /` - หน้าแรก แสดงรายการ API endpoints ทั้งหมดพร้อมคำอธิบาย
+
+### 👨‍🎓 Students
 
 - `GET /api/students` - ดึงข้อมูลนักเรียนทั้งหมด
 - `GET /api/students/:id` - ดึงข้อมูลนักเรียนตาม ID
 - `POST /api/students` - สร้างนักเรียนใหม่
+  - Body: `{ "name": "string", "email": "string" }`
 - `PUT /api/students/:id` - อัพเดทข้อมูลนักเรียน
+  - Body: `{ "name": "string", "email": "string" }`
 - `DELETE /api/students/:id` - ลบนักเรียน
 
-### Courses
+### 📚 Courses
 
 - `GET /api/courses` - ดึงข้อมูลคอร์สทั้งหมด
 - `GET /api/courses/:id` - ดึงข้อมูลคอร์สตาม ID
 - `POST /api/courses` - สร้างคอร์สใหม่
+  - Body: `{ "title": "string", "description": "string" }`
 - `PUT /api/courses/:id` - อัพเดทข้อมูลคอร์ส
+  - Body: `{ "title": "string", "description": "string" }`
 - `DELETE /api/courses/:id` - ลบคอร์ส
 
-### Enrollments
+### ✏️ Enrollments
 
 - `GET /api/enrollments` - ดึงข้อมูลการลงทะเบียนทั้งหมด
 - `GET /api/enrollments/:id` - ดึงข้อมูลการลงทะเบียนตาม ID
 - `POST /api/enrollments` - สร้างการลงทะเบียนใหม่
+  - Body: `{ "student_id": 1, "course_id": 1 }`
 - `DELETE /api/enrollments/:id` - ลบการลงทะเบียน
 
 ## ตัวอย่างการใช้งาน API
 
+### ดูข้อมูล API ทั้งหมด (หน้า Index)
+
+เปิด browser หรือใช้ curl:
+
+```bash
+curl http://localhost:3000/
+```
+
+จะแสดงข้อมูล JSON ที่มี:
+- รายการ endpoints ทั้งหมด
+- คำอธิบายแต่ละ endpoint
+- ตัวอย่าง request body
+
 ### สร้างนักเรียนใหม่
 
 ```bash
-curl -X POST http://localhost:3000/api/students \
-  -H "Content-Type: application/json" \
-  -d '{"name":"John Doe","email":"john@example.com"}'
+# Windows PowerShell
+Invoke-RestMethod -Uri "http://localhost:3000/api/students" -Method POST -ContentType "application/json" -Body '{"name":"John Doe","email":"john@example.com"}'
+
+# หรือใช้ curl
+curl -X POST http://localhost:3000/api/students -H "Content-Type: application/json" -d "{\"name\":\"John Doe\",\"email\":\"john@example.com\"}"
+```
+
+### ดึงข้อมูลนักเรียนทั้งหมด
+
+```bash
+# Windows PowerShell
+Invoke-RestMethod -Uri "http://localhost:3000/api/students" -Method GET
+
+# หรือใช้ curl
+curl http://localhost:3000/api/students
 ```
 
 ### สร้างคอร์สใหม่
 
 ```bash
-curl -X POST http://localhost:3000/api/courses \
-  -H "Content-Type: application/json" \
-  -d '{"title":"Web Development","description":"Learn HTML, CSS, JavaScript"}'
+# Windows PowerShell
+Invoke-RestMethod -Uri "http://localhost:3000/api/courses" -Method POST -ContentType "application/json" -Body '{"title":"Web Development","description":"Learn HTML, CSS, JavaScript"}'
+
+# หรือใช้ curl
+curl -X POST http://localhost:3000/api/courses -H "Content-Type: application/json" -d "{\"title\":\"Web Development\",\"description\":\"Learn HTML, CSS, JavaScript\"}"
 ```
 
 ### ลงทะเบียนเรียน
 
 ```bash
-curl -X POST http://localhost:3000/api/enrollments \
-  -H "Content-Type: application/json" \
-  -d '{"student_id":1,"course_id":1}'
+# Windows PowerShell
+Invoke-RestMethod -Uri "http://localhost:3000/api/enrollments" -Method POST -ContentType "application/json" -Body '{"student_id":1,"course_id":1}'
+
+# หรือใช้ curl
+curl -X POST http://localhost:3000/api/enrollments -H "Content-Type: application/json" -d "{\"student_id\":1,\"course_id\":1}"
 ```
 
 ## โครงสร้างโปรเจค
