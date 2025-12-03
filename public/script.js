@@ -1,5 +1,7 @@
-// API Base URL
-const API_URL = 'http://localhost:3000/api';
+// API Base URL - ตรวจสอบว่ารันที่ไหน
+const API_URL = window.location.hostname === 'localhost' 
+    ? 'http://localhost:3000/api'
+    : 'https://students-courese-system.onrender.com/api';
 
 // Global state
 let students = [];
